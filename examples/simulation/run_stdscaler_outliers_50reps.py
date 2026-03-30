@@ -70,8 +70,8 @@ from spherical_deepkriging.basis_functions.mrts.mrts import mrts0
 from spherical_deepkriging.models.deep_kriging import DeepKrigingTrainer, DeepKrigingDefaultTrainer
 from spherical_deepkriging.configs import DeepKrigingModelConfig, DeepKrigingDefaultConfig
 from spherical_deepkriging.models.universal_kriging import UniversalKriging
-from rpy2.robjects.conversion import localconverter
-from spherical_deepkriging.basis_functions.mrts_sphere.sphere import mrts_sphere, numpy2ri_converter
+
+from spherical_deepkriging.basis_functions.mrts_sphere.sphere_cpp import mrts_sphere
 
 # ── Experiment parameters ─────────────────────────────────────────────────────
 SEED_BASE           = 50
@@ -181,8 +181,7 @@ def precompute_max_mrts(distance_type, location_data, knot_num, order_max, knot=
     else:
         idx_knot = None
     if distance_type == "sphere":
-        with localconverter(numpy2ri_converter):
-            res_r = mrts_sphere(knot, order_max, location_data.astype(np_f32))
+        res_r = mrts_sphere(knot, order_max)
         res_dict = dict(zip(res_r.names(), res_r))
         phi = np.asarray(res_dict["mrts"], dtype=dtype_basis)
     else:

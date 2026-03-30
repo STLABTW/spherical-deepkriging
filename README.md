@@ -28,77 +28,26 @@ The default feedforward hidden-block design is illustrated below:
 
 ### Prerequisites
 
-Before you begin, ensure you have the following:
+Before installation, make sure Miniconda is available.
 
-- **Conda**: Install [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) on your system.
-- **Python 3.10**: Ensure Python 3.10 is installed.
-- **CMake**: Included as part of Conda installation (if not, install manually).
-- **GCC or Clang**: Install the appropriate compiler for your platform:
-  - **macOS/Linux**: Use the system's default compiler or install via your package manager.
-  - **Windows**: Not supported for C++ building due to compatibility issues.
+- **Miniconda**: Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
+- **Windows users**: Use WSL for development and builds.
 
 ---
 
 ### Installation
 
-#### Step 1 — Set up WSL (Windows users only)
-
-Open Windows PowerShell as Administrator and run:
-
+In most cases, make install-dev sets up everything you need for local development.
 ```bash
-wsl --install -d Ubuntu
+    git clone https://github.com/STLABTW/spherical-deepkriging.git
+    cd spherical-deepkriging
+    make install-dev
 ```
 
-Then open the Ubuntu terminal for all subsequent steps.
 
-#### Step 2 — Install Conda
-
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-~/miniconda3/bin/conda init bash
-```
-
-Close and reopen the terminal so that `conda` is available.
-
-#### Step 3 — Clone the repository
-
-```bash
-cd ~
-git clone https://github.com/STLABTW/deepkriging-sphere.git
-cd deepkriging-sphere
-```
-
-#### Step 4 — Install system build tools (Linux / WSL)
-
-```bash
-sudo apt update
-sudo apt install build-essential -y
-```
-
-#### Step 5 — Create the Conda environment
-
-```bash
-make install-dev
-```
-
-This will:
-- Create a Conda environment named `spherical-deepkriging` (via `envs/conda/build_conda_env.sh`).
-- Install essential tools like CMake, pybind11, and Armadillo.
-
-#### Step 6 — Build C++ extensions
-
-```bash
-make build-spherical-cpp
-```
-
-This uses CMake to configure and build the spherical basis C++ extension.
-
-#### Step 7 — Activate the environment
-
-```bash
-conda activate spherical-deepkriging
-```
+Notes:
+- `make install-dev` creates the spherical-deepkriging conda environment and installs project dependencies.
+- `make build-spherical-cpp` builds the MRTS-sphere C++ extension.
 
 ---
 
