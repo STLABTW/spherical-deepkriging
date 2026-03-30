@@ -1,7 +1,5 @@
 import numpy as np
-
 import pytest
-
 
 pytest.importorskip("gpboost")
 
@@ -14,4 +12,3 @@ def test_universal_kriging_coords_to_radians_dtype_and_shape():
 
     assert out.shape == coords.shape
     assert out.dtype == np.float32
-

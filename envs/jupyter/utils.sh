@@ -28,7 +28,8 @@ update_conda_env_path() {
 
 check_kernel_availability() {
   local KERNEL_NAME=$1
-  local KERNEL_PATH=$(jupyter kernelspec list | grep -o "^${KERNEL_NAME} .*" | cut -d' ' -f2)
+  local KERNEL_PATH
+  KERNEL_PATH=$(jupyter kernelspec list 2>/dev/null | awk -v k="${KERNEL_NAME}" '$1==k {print $2; exit}')
 
   if [ -z "${KERNEL_PATH}" ]; then
     echo -e "${FG_RED}Kernel '${KERNEL_NAME}' is not available${FG_RESET}"
@@ -48,7 +49,7 @@ set_jupyter_kernel_path() {
     ipython kernel install --name "${KERNEL_NAME}" --user
   fi
 
-  KERNEL_PATH=$(jupyter kernelspec list | grep -o "^${KERNEL_NAME} .*" | cut -d' ' -f2)
+  KERNEL_PATH=$(jupyter kernelspec list 2>/dev/null | awk -v k="${KERNEL_NAME}" '$1==k {print $2; exit}')
 
   if [ -n "${KERNEL_PATH}" ]; then
     KERNEL_DIR="${KERNEL_PATH}"

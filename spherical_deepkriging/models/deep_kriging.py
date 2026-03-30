@@ -3,8 +3,10 @@ from typing import Optional
 import numpy as np
 import tensorflow as tf
 
-from spherical_deepkriging.configs import DeepKrigingDefaultConfig, DeepKrigingModelConfig
-
+from spherical_deepkriging.configs import (
+    DeepKrigingDefaultConfig,
+    DeepKrigingModelConfig,
+)
 
 
 class DeepKrigingTrainer:
@@ -15,29 +17,35 @@ class DeepKrigingTrainer:
     def _build_model(self) -> tf.keras.Sequential:
         model = tf.keras.Sequential()
 
-        model.add(tf.keras.layers.Dense(
-            self.config.hidden_layers[0],
-            activation=None,
-            use_bias=False,
-            kernel_initializer='he_normal',
-            input_shape=(self.config.input_dim,)
-        ))
+        model.add(
+            tf.keras.layers.Dense(
+                self.config.hidden_layers[0],
+                activation=None,
+                use_bias=False,
+                kernel_initializer="he_normal",
+                input_shape=(self.config.input_dim,),
+            )
+        )
         model.add(tf.keras.layers.BatchNormalization())
         model.add(tf.keras.layers.Activation(self.config.activation))
         model.add(tf.keras.layers.Dropout(self.config.dropout_rate))
 
         for units in self.config.hidden_layers[1:]:
-            model.add(tf.keras.layers.Dense(
-                units,
-                activation=None,
-                use_bias=False,
-                kernel_initializer='he_normal'
-            ))
+            model.add(
+                tf.keras.layers.Dense(
+                    units,
+                    activation=None,
+                    use_bias=False,
+                    kernel_initializer="he_normal",
+                )
+            )
             model.add(tf.keras.layers.BatchNormalization())
             model.add(tf.keras.layers.Activation(self.config.activation))
             model.add(tf.keras.layers.Dropout(self.config.dropout_rate))
 
-        output_activation = ("linear" if self.config.output_type == "continuous" else "sigmoid")
+        output_activation = (
+            "linear" if self.config.output_type == "continuous" else "sigmoid"
+        )
         model.add(tf.keras.layers.Dense(1, activation=output_activation))
 
         return model
@@ -61,9 +69,9 @@ class DeepKrigingTrainer:
         return self.model.fit(
             train_features,
             train_labels,
-            validation_data=(valid_features, valid_labels)
-            if valid_features is not None
-            else None,
+            validation_data=(
+                (valid_features, valid_labels) if valid_features is not None else None
+            ),
             epochs=self.config.epochs,
             batch_size=self.config.batch_size,
             verbose=self.config.verbose,
@@ -86,13 +94,15 @@ class DeepKrigingDefaultTrainer:
         act = self.config.activation
 
         for i in range(n):
-            model.add(tf.keras.layers.Dense(
-                units,
-                activation=None,
-                use_bias=False,
-                kernel_initializer="he_normal",
-                input_shape=(self.config.input_dim,) if i == 0 else None,
-            ))
+            model.add(
+                tf.keras.layers.Dense(
+                    units,
+                    activation=None,
+                    use_bias=False,
+                    kernel_initializer="he_normal",
+                    input_shape=(self.config.input_dim,) if i == 0 else None,
+                )
+            )
             model.add(tf.keras.layers.BatchNormalization())
             model.add(tf.keras.layers.Activation(act))
             if i < n - 1:
@@ -119,7 +129,9 @@ class DeepKrigingDefaultTrainer:
         return self.model.fit(
             train_features,
             train_labels,
-            validation_data=(valid_features, valid_labels) if valid_features is not None else None,
+            validation_data=(
+                (valid_features, valid_labels) if valid_features is not None else None
+            ),
             epochs=self.config.epochs,
             batch_size=self.config.batch_size,
             verbose=self.config.verbose,

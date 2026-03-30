@@ -1,7 +1,5 @@
 import numpy as np
-
 import pytest
-
 
 tf = pytest.importorskip("tensorflow")
 
@@ -38,7 +36,8 @@ def test_deep_kriging_default_dropout_count():
     )
     trainer = DeepKrigingDefaultTrainer(cfg)
 
-    dropout_layers = [l for l in trainer.model.layers if isinstance(l, tf.keras.layers.Dropout)]
+    dropout_layers = [
+        l for l in trainer.model.layers if isinstance(l, tf.keras.layers.Dropout)
+    ]
     # In deep_kriging.py: dropout is added only for i < n-1
     assert len(dropout_layers) == n - 1
-

@@ -1,4 +1,6 @@
 # Spherical DeepKriging
+[![Tests](https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg)](https://github.com/STLABTW/spherical-deepkriging/actions)
+[![codecov](https://codecov.io/github/STLABTW/spherical-deepkriging/graph/badge.svg?token=OF0LKVDII6)](https://codecov.io/github/STLABTW/spherical-deepkriging)
 
 A deep learning framework for spatial prediction on the sphere, combining DeepKriging with spherical harmonic basis functions (MRTS-sphere), Wendland basis, and Universal Kriging.
 
@@ -20,7 +22,7 @@ The package currently provides the following basis families:
 
 The default feedforward hidden-block design is illustrated below:
 
-![DeepKriging hidden block](artifacts/hidden_block.png)
+<img src="artifacts/hidden_block.png" alt="DeepKriging hidden block" width="60%" />
 
 ---
 

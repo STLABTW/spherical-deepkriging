@@ -73,4 +73,3 @@ endif()
 set_target_properties(spherical_basis PROPERTIES
     OUTPUT_NAME "spherical_basis"
 )
-

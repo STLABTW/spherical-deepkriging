@@ -44,7 +44,8 @@ if _RPY2_AVAILABLE:
 
 try:
     # C++/pybind implementation (deep-frk style).
-    from .sphere_cpp import CPP_EXTENSIONS_AVAILABLE, mrts_sphere as _mrts_sphere_cpp
+    from .sphere_cpp import CPP_EXTENSIONS_AVAILABLE
+    from .sphere_cpp import mrts_sphere as _mrts_sphere_cpp
 except Exception:  # pragma: no cover
     CPP_EXTENSIONS_AVAILABLE = False
     _mrts_sphere_cpp = None  # type: ignore[assignment]

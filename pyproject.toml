@@ -17,7 +17,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "LICENSE"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "Wen-Ting Wang", email = "egpivo@gmail.com"},
+    {name = "Hao-Yun Huang", email = "hhuscout@gms.ndhu.edu.tw"},
+    {name = "Ping-Hsun Chiang", email = "andrew501228@gmail.com"},
+    {name = "Wu-Wei Ying", email = "wuweiying1011@gms.ndhu.edu.tw"},
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
