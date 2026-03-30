@@ -1,0 +1,140 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel",
+    "cmake>=3.10",
+    "pybind11>=2.11.0,<3.0.0",
+    "numpy>=1.24.0,<2.0.0",
+    "tomli>=2.0.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spherical-deepkriging"
+version = "0.1.0"
+description = "Deep learning package for FRK"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "LICENSE"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0.0,<3.0.0",  # Avoid conflicts with neural-spatial (requires <2.3.0), but allow newer versions for DeepFRK
+    "pytorch-lightning>=2.6.0,<3.0.0",
+    "numpy>=1.24.0,<2.0.0",  # Avoid conflicts with packages requiring numpy<2.0.0 (hangman, neural-spatial, tensorflow)
+    "tensorflow>=2.19.0,<3.0.0",
+    "pandas>=2.0.0",
+    "tabulate>=0.9.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.10.0",
+    "pybind11>=2.11.0,<3.0.0",  # Avoid conflicts with neural-spatial (requires <3.0.0)
+    "tqdm>=4.65.0",
+    "tensorboard>=2.13.0,<2.20.0",  # Use <2.20.0 to avoid conflicts, but keep >=2.13.0 for compatibility
+    "protobuf>=4.25.8,<5.0.0",
+    "pykrige>=1.7.0",  # Universal Kriging for spatial interpolation
+    "seaborn>=0.13.0",  # Statistical data visualization
+    "GPy>=1.10.0",  # Gaussian Processes for data generation (matching Lin paper)
+    "optuna>=3.0.0",  # Bayesian hyperparameter optimization
+    "plotly>=5.0.0",  # Required for optuna.visualization
+    "ipykernel>=6.13.0,<7.0.0",  # Jupyter kernel support
+]
+
+[project.optional-dependencies]
+vision = [
+    "torchvision>=0.15.0",
+]
+audio = [
+    "torchaudio>=2.0.0",
+]
+viz = [
+    "matplotlib>=3.7.0",
+    "pillow>=10.0.0,<12.0.0",  # Avoid conflicts with streamlit (requires <12)
+    "plotly>=5.0.0",  # Interactive visualization
+]
+data = [
+    # pandas and scikit-learn are now in main dependencies
+]
+mrts = [
+    "jax>=0.4.0,<0.5.0",  # Avoid conflicts with neural-spatial (requires <0.5.0)
+    "jaxlib>=0.4.0,<0.5.0",  # Avoid conflicts with neural-spatial (requires <0.5.0)
+]
+utils = [
+    # tqdm and tensorboard moved to main dependencies
+]
+jupyter = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.13.0,<7.0.0",  # Jupyter kernel support
+    "notebook>=7.0.0",
+    "matplotlib>=3.7.0",
+]
+all = [
+    "torchvision>=0.15.0",
+    "torchaudio>=2.0.0",
+    "matplotlib>=3.7.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.10.0",
+    "tqdm>=4.65.0",
+    "tensorboard>=2.13.0,<2.20.0",
+    "protobuf>=4.25.8,<5.0.0",
+    "pillow>=10.0.0,<12.0.0",
+    "pandas>=2.0.0",
+    "plotly>=5.0.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[tool.setuptools]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["spherical_deepkriging*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+[tool.coverage.run]
+source = ["spherical_deepkriging"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/examples/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "^\\.\\.\\.$",  # Exclude ellipsis in overload signatures
+]
