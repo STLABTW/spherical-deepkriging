@@ -1,3 +1,4 @@
+import builtins
 import importlib
 import importlib.util
 import sys
@@ -128,6 +129,14 @@ def test_cpp_extensions_init_with_and_without_binary(monkeypatch):
 
     sys.modules.pop(module_name, None)
     sys.modules.pop(f"{module_name}.spherical_basis", None)
+    real_import = builtins.__import__
+
+    def fake_import(name, globals=None, locals=None, fromlist=(), level=0):
+        if name.endswith("spherical_basis"):
+            raise ImportError("forced missing binary")
+        return real_import(name, globals, locals, fromlist, level)
+
+    monkeypatch.setattr(builtins, "__import__", fake_import)
     module = importlib.import_module(module_name)
     module = importlib.reload(module)
     assert module.__all__ == []
