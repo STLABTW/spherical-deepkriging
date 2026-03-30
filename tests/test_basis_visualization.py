@@ -1,6 +1,8 @@
 import numpy as np
 import pytest
 
+jax = pytest.importorskip("jax")
+
 from spherical_deepkriging.basis_functions.mrts import visualization as mrts_vis
 from spherical_deepkriging.basis_functions.wendland import visualization as w_vis
 
