@@ -40,6 +40,16 @@ class CMakeBuild(build_ext):
             f"-DPython3_EXECUTABLE={python_exe}",
         ]
 
+        # Ensure CMake can locate pybind11Config.cmake in isolated build envs.
+        try:
+            import pybind11  # type: ignore
+
+            pybind11_dir = Path(pybind11.get_cmake_dir()).resolve()
+            cmake_args.append(f"-Dpybind11_DIR={pybind11_dir}")
+        except Exception:
+            # Let CMake try its default discovery path if pybind11 is unavailable.
+            pass
+
         subprocess.check_call(
             ["cmake", "-S", ext.sourcedir, "-B", str(build_temp), *cmake_args]
         )
