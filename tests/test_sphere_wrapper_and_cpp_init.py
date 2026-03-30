@@ -2,6 +2,7 @@ import importlib
 import importlib.util
 import sys
 import types
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -127,21 +128,25 @@ def test_cpp_extensions_init_with_and_without_binary(monkeypatch):
 
     sys.modules.pop(module_name, None)
     sys.modules.pop(f"{module_name}.spherical_basis", None)
-    warned = {}
-    monkeypatch.setattr(
-        "warnings.warn",
-        lambda message, category=None: warned.setdefault("message", str(message)),
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        module = importlib.import_module(module_name)
+        module = importlib.reload(module)
+    assert any(
+        str(item.message).startswith("C++ extensions not available") for item in caught
     )
-    module = importlib.import_module(module_name)
-    module = importlib.reload(module)
-    assert warned["message"].startswith("C++ extensions not available")
 
 
 def test_cpp_setup_executes_and_build_class_issues_cmake_commands(
     monkeypatch, tmp_path
 ):
-    setup_path = Path(
-        "/home/egpivo/github/spherical-deepkriging/spherical_deepkriging/basis_functions/mrts_sphere/cpp_extensions/setup.py"
+    setup_path = (
+        Path(__file__).resolve().parents[1]
+        / "spherical_deepkriging"
+        / "basis_functions"
+        / "mrts_sphere"
+        / "cpp_extensions"
+        / "setup.py"
     )
     captured = {}
     monkeypatch.setattr(
