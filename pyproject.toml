@@ -19,8 +19,8 @@ license = {text = "LICENSE"}
 authors = [
     {name = "Wen-Ting Wang", email = "egpivo@gmail.com"},
     {name = "Hao-Yun Huang", email = "hhuscout@gms.ndhu.edu.tw"},
-    {name = "Ping-Hsun Chiang", email = "andrew501228@gmail.com"},   
-    {name = "Wu-Wei Ying", email = "wuweiying1011@gms.ndhu.edu.tw"},          
+    {name = "Ping-Hsun Chiang", email = "andrew501228@gmail.com"},
+    {name = "Wu-Wei Ying", email = "wuweiying1011@gms.ndhu.edu.tw"},
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",

@@ -234,5 +234,3 @@ def test_predict_get_coef_decompose_and_cleanup(monkeypatch):
     model.cleanup()
     assert model.gp_model is None
     assert model.params is None
-
-

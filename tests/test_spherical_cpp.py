@@ -187,9 +187,7 @@ class TestMRTSSphere:
         with patch.object(spherical_module, "CPP_EXTENSIONS_AVAILABLE", False):
             knot = np.array([[45.0, -120.0], [46.0, -121.0]])
             # Escape the + in "C++" for regex
-            with pytest.raises(
-                ImportError, match="C\\+\\+ extensions not available"
-            ):
+            with pytest.raises(ImportError, match="C\\+\\+ extensions not available"):
                 spherical_module.mrts_sphere(knot, k=2)
 
     def test_floating_point_error_for_non_finite_k(self):
@@ -208,26 +206,28 @@ class TestMRTSSphere:
         )
         mock_cpp_Kmatrix = MagicMock(return_value=np.ones((2, 2)))
 
-        with patch.object(
-            spherical_module, "CPP_EXTENSIONS_AVAILABLE", True
-        ), patch.object(
-            spherical_module,
-            "cpp_K",
-            lambda lat, lon, n: K_with_nan,
-            create=True,
-        ), patch.object(
-            spherical_module,
-            "getEigenTopK",
-            mock_getEigenTopK,
-            create=True,
-        ), patch.object(
-            spherical_module,
-            "cpp_Kmatrix",
-            mock_cpp_Kmatrix,
-            create=True,
+        with (
+            patch.object(spherical_module, "CPP_EXTENSIONS_AVAILABLE", True),
+            patch.object(
+                spherical_module,
+                "cpp_K",
+                lambda lat, lon, n: K_with_nan,
+                create=True,
+            ),
+            patch.object(
+                spherical_module,
+                "getEigenTopK",
+                mock_getEigenTopK,
+                create=True,
+            ),
+            patch.object(
+                spherical_module,
+                "cpp_Kmatrix",
+                mock_cpp_Kmatrix,
+                create=True,
+            ),
         ):
             with pytest.raises(
                 FloatingPointError, match="K contains non-finite values"
             ):
                 spherical_module.mrts_sphere(knot, k=2)
-

@@ -98,7 +98,8 @@ def test_default_trainer_discrete_output_and_optional_arguments(monkeypatch):
     monkeypatch.setattr(
         trainer.model,
         "fit",
-        lambda *args, **kwargs: fit_kwargs.update(kwargs) or SimpleNamespace(history={}),
+        lambda *args, **kwargs: fit_kwargs.update(kwargs)
+        or SimpleNamespace(history={}),
     )
 
     train_x = np.zeros((2, 2), dtype=np.float32)
