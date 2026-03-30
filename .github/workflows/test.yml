@@ -28,6 +28,8 @@ jobs:
           pytest tests/ \
             -m "not slow and not integration" \
             --cov=spherical_deepkriging \
+            --cov-config=.coveragerc \
+            --cov-fail-under=90 \
             --cov-report=xml \
             --cov-report=term \
             -v --tb=short
