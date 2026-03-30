@@ -1,8 +1,6 @@
 # Spherical DeepKriging
 [![Tests](https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg)](https://github.com/STLABTW/spherical-deepkriging/actions)
-[![Code Coverage](https://img.shields.io/codecov/c/github/STLABTW/spherical-deepkriging/main.svg)](https://app.codecov.io/githubSTLABTW/spherical-deepkriging?branch=develop)
-<a href="https://pypi.org/project/kbbridge/"><img src="https://img.shields.io/pypi/v/kbbridge.svg?logo=pypi&label=PyPI&logoColor=silver"/></a>
-
+[![codecov](https://codecov.io/github/STLABTW/spherical-deepkriging/graph/badge.svg?token=OF0LKVDII6)](https://codecov.io/github/STLABTW/spherical-deepkriging)
 
 A deep learning framework for spatial prediction on the sphere, combining DeepKriging with spherical harmonic basis functions (MRTS-sphere), Wendland basis, and Universal Kriging.
 
