@@ -106,9 +106,7 @@ def mrts_sphere(
             top_eigvals[: (k - 1)],
             np.inf,
         )
-        eiKvecmval = np.nan_to_num(
-            eiKvecmval, nan=0.0, posinf=0.0, neginf=0.0
-        )
+        eiKvecmval = np.nan_to_num(eiKvecmval, nan=0.0, posinf=0.0, neginf=0.0)
 
         # Step 5: Compute Konev = K @ onev where onev = ones(n) / n
         onev = np.ones(n) / n
@@ -130,4 +128,3 @@ def clear_cache() -> None:
     """Clear the cache for K matrix, Konev, and eigenpairs."""
     global _cache
     _cache.clear()
-

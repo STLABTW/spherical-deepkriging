@@ -3,4 +3,3 @@ global-exclude *.so *.pyd *.dylib *.dll *.a *.lib
 
 # Include C++ sources for the spherical basis extension in sdist builds.
 recursive-include spherical_deepkriging/basis_functions/mrts_sphere/cpp_extensions *.cpp *.h *.hpp *.txt *.py CMakeLists.txt
-

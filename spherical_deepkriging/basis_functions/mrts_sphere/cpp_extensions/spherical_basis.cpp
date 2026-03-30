@@ -476,4 +476,3 @@ PYBIND11_MODULE(spherical_basis, m) {
           "Compute top k largest eigenvalues and eigenvectors using Spectra (matches RSpectra behavior)",
           py::arg("M"), py::arg("k"));
 }
-

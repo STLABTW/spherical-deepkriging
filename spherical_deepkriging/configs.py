@@ -14,7 +14,7 @@ class DeepKrigingModelConfig:
     metrics: Optional[List[str]] = None
     epochs: int = 10
     batch_size: int = 32
-     # for EarlyStopping; None = no early stopping
+    # for EarlyStopping; None = no early stopping
     patience: Optional[int] = None
     verbose: int = 1
 

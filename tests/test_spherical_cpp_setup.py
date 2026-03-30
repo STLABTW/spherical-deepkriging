@@ -50,4 +50,3 @@ class TestCppExtensionsSetup:
         assert "setup(" in content
         assert "name=" in content
         assert "spherical_basis" in content
-

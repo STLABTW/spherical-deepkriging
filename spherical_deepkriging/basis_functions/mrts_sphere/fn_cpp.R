@@ -65,13 +65,13 @@ SEXP eigenMapMatMult(const Eigen::Map<Eigen::MatrixXd> A, Eigen::Map<Eigen::Matr
 class func3: public Func
 {
   public:
-  
+
   double operator()(const double& x) const
   {
   return (double)log(1-x)/x;
   }
   };
-  
+
   //Kf
   // [[Rcpp::export]]
   double cpp_Kf(double L1, double l1, double L2, double l2){
@@ -98,12 +98,12 @@ class func3: public Func
   const double res = integrate(f, lower, aa, err_est, err_code);
   result = 1-(double)pow(M_PI,2)/6-res;
   }
-  
+
   return result;
   }
 
 // [[Rcpp::export]]
-NumericMatrix cpp_Kmatrix(int KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev, 
+NumericMatrix cpp_Kmatrix(int KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev,
                            NumericMatrix eiKvecmval, int n, int N) {
 
   NumericMatrix xx(N, KK);
@@ -164,7 +164,7 @@ NumericMatrix cpp_Kmatrix(int KK, NumericMatrix X, NumericMatrix ggrids, Numeric
 
 //fk
 // [[Rcpp::export]]
-NumericVector cpp_fk(double L1, double l1, double KK, NumericMatrix X, NumericVector Konev, 
+NumericVector cpp_fk(double L1, double l1, double KK, NumericMatrix X, NumericVector Konev,
 NumericMatrix eiKvecmval, double n){
 NumericVector f1(KK);
 NumericVector f2(n);
@@ -183,7 +183,7 @@ return f1;
 }
 
 // [[Rcpp::export]]
-NumericMatrix cpp_Kmatrix5(double KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev, 
+NumericMatrix cpp_Kmatrix5(double KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev,
 NumericMatrix eiKvecmval, double n, double N) {
 NumericMatrix xx(N,KK);
 for (int i = 0; i < N; i++) {
@@ -194,7 +194,7 @@ return xx;
 
 //fk
 // [[Rcpp::export]]
-NumericVector cpp_fk2(double L1, double l1, double KK, NumericMatrix X, NumericVector Konev, 
+NumericVector cpp_fk2(double L1, double l1, double KK, NumericMatrix X, NumericVector Konev,
                       NumericMatrix eiKvecmval, double n){
     NumericVector f1(KK);
     NumericVector f2(n);
@@ -208,7 +208,7 @@ NumericVector cpp_fk2(double L1, double l1, double KK, NumericMatrix X, NumericV
 
 
 // [[Rcpp::export]]
-NumericMatrix cpp_Kmatrix2(double KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev, 
+NumericMatrix cpp_Kmatrix2(double KK, NumericMatrix X, NumericMatrix ggrids, NumericVector Konev,
                            NumericMatrix eiKvecmval, double n, double N) {
     NumericMatrix xx(N,n);
     for (int i = 0; i < N; i++) {
@@ -270,9 +270,8 @@ mrts_sphere = function(knot, k, X)
     {
         eiKvecmval[,i] = eiK$vector[,i] /eiK$values[i]
     }
-    dm_train = cpp_Kmatrix(bigK, knot, X, K%*%onev, eiKvecmval, n, N) 
+    dm_train = cpp_Kmatrix(bigK, knot, X, K%*%onev, eiKvecmval, n, N)
     res = {}
     res$mrts = dm_train
     return(res)
 }
-

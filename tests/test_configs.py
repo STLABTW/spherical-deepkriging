@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_deepkriging_model_config_continuous_defaults():
     from spherical_deepkriging.configs import DeepKrigingModelConfig
 
@@ -31,4 +28,3 @@ def test_deepkriging_default_config_discrete_defaults():
     cfg = DeepKrigingDefaultConfig(input_dim=4, output_type="discrete")
     assert cfg.loss == "binary_crossentropy"
     assert cfg.metrics == ["accuracy"]
-
