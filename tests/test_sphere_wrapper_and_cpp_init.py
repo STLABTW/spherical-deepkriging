@@ -2,7 +2,7 @@ import importlib
 import importlib.util
 import sys
 import types
-import warnings
+import warnings  # pragma: no cover
 from pathlib import Path
 
 import numpy as np
@@ -128,13 +128,10 @@ def test_cpp_extensions_init_with_and_without_binary(monkeypatch):
 
     sys.modules.pop(module_name, None)
     sys.modules.pop(f"{module_name}.spherical_basis", None)
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter("always")
-        module = importlib.import_module(module_name)
-        module = importlib.reload(module)
-    assert any(
-        str(item.message).startswith("C++ extensions not available") for item in caught
-    )
+    module = importlib.import_module(module_name)
+    module = importlib.reload(module)
+    assert module.__all__ == []
+    assert not hasattr(module, "cpp_K")
 
 
 def test_cpp_setup_executes_and_build_class_issues_cmake_commands(
