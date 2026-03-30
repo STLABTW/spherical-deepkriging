@@ -20,7 +20,7 @@ The package currently provides the following basis families:
 
 The default feedforward hidden-block design is illustrated below:
 
-![DeepKriging hidden block](artifacts/hidden_block.png)
+<img src="artifacts/hidden_block.png" alt="DeepKriging hidden block" width="60%" />
 
 ---
 
