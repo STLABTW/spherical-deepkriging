@@ -57,10 +57,29 @@ jobs:
       - name: Install build tools
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build twine auditwheel
 
       - name: Build package
         run: python -m build
+
+      # PyPI rejects bare 'linux_x86_64' wheels; require PEP 600 manylinux tags.
+      - name: Repair wheel with auditwheel (manylinux)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq patchelf
+          mkdir -p repaired
+          shopt -s nullglob
+          for whl in dist/*linux*.whl; do
+            echo "Repairing: $whl"
+            auditwheel repair "$whl" -w repaired
+            rm -f "$whl"
+          done
+          for w in repaired/*.whl; do
+            mv "$w" dist/
+          done
+          shopt -u nullglob
+          rmdir repaired 2>/dev/null || true
+          ls -la dist/
 
       - name: Check package contents
         run: |
