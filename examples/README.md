@@ -12,7 +12,8 @@ This directory contains runnable examples and paper-oriented experiment artifact
 
 Use the toy notebook when you only want to verify that the module works:
 
-- `toy/toy_sphere_deepkriging.ipynb`
+- `toy/toy_sphere_deepkriging.ipynb` (local / your own Jupyter)
+- `toy/toy_sphere_deepkriging_colab.ipynb` — **Google Colab** variant: installs [`spherical-deepkriging` from PyPI](https://pypi.org/project/spherical-deepkriging/) and installs `cmake` + `g++` on Colab only if needed (sdist build). Open in Colab: [colab link](https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb) (requires this repo on GitHub at `main`).
 
 The notebook is intentionally minimal and split into:
 
