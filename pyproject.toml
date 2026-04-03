@@ -15,7 +15,7 @@ version = "1.0.2"
 description = "Deep learning package for FRK"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "LICENSE"}
+license = {text = "MIT"}
 authors = [
     {name = "Wen-Ting Wang", email = "egpivo@gmail.com"},
     {name = "Hao-Yun Huang", email = "hhuscout@gms.ndhu.edu.tw"},
@@ -23,6 +23,7 @@ authors = [
     {name = "Wu-Wei Ying", email = "wuweiying1011@gms.ndhu.edu.tw"},
 ]
 classifiers = [
+    "License :: OSI Approved :: MIT License",
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
@@ -96,6 +97,7 @@ all = [
     "plotly>=5.0.0",
 ]
 dev = [
+    "twine>=4.0.0",
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "black>=23.7.0",
