@@ -65,6 +65,15 @@ For run instructions and detailed notes, see:
 
 ---
 
-### Paper
-
-The corresponding paper reference and citation will be added here in a later update.
+### Citation
+```
+@misc{huang2026deepkrigingglobaldata,
+      title={DeepKriging on the Global Data}, 
+      author={Hao-Yun Huang and Wen-Ting Wang and Ping-Hsun Chiang and Wei-Ying Wu},
+      year={2026},
+      eprint={2604.01689},
+      archivePrefix={arXiv},
+      primaryClass={stat.ME},
+      url={https://arxiv.org/abs/2604.01689}, 
+}
+```
