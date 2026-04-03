@@ -28,18 +28,28 @@ FetchContent_Declare(
     GIT_TAG v1.0.1
 )
 
-FetchContent_MakeAvailable(spectra)
-set(SPECTRA_INCLUDE_DIR ${spectra_SOURCE_DIR}/include)
-message(STATUS "Spectra include directory: ${SPECTRA_INCLUDE_DIR}")
+# Use Populate only (not MakeAvailable): Spectra's CMakeLists calls find_package(Eigen3),
+# which fails in isolated wheel/sdist builds where we only vendor headers below.
+FetchContent_GetProperties(spectra)
+if(NOT spectra_POPULATED)
+    FetchContent_Populate(spectra)
+    set(SPECTRA_INCLUDE_DIR ${spectra_SOURCE_DIR}/include)
+    message(STATUS "Downloaded Spectra, include directory: ${SPECTRA_INCLUDE_DIR}")
+else()
+    set(SPECTRA_INCLUDE_DIR ${spectra_SOURCE_DIR}/include)
+    message(STATUS "Using cached Spectra, include directory: ${SPECTRA_INCLUDE_DIR}")
+endif()
 
 # === Eigen (header-only) ===
-# Use FetchContent to avoid requiring system Eigen headers at build time.
 FetchContent_Declare(
     eigen
     GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
     GIT_TAG 3.4.0
 )
-FetchContent_MakeAvailable(eigen)
+FetchContent_GetProperties(eigen)
+if(NOT eigen_POPULATED)
+    FetchContent_Populate(eigen)
+endif()
 set(EIGEN3_INCLUDE_DIRS ${eigen_SOURCE_DIR})
 
 # === Module Build ===
