@@ -11,7 +11,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spherical-deepkriging"
-version = "1.0.2"
+version = "1.0.3"
 description = "Deep learning package for FRK"
 readme = "README.md"
 requires-python = ">=3.10"
