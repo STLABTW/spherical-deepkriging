@@ -2,6 +2,8 @@
 
 [![Tests](https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg)](https://github.com/STLABTW/spherical-deepkriging/actions)
 [![codecov](https://codecov.io/github/STLABTW/spherical-deepkriging/graph/badge.svg?token=OF0LKVDII6)](https://codecov.io/github/STLABTW/spherical-deepkriging)
+<a href="https://pypi.org/project/spherical-deepkriging/"><img src="https://img.shields.io/pypi/v/spherical-deepkriging.svg?logo=pypi&label=PyPI&logoColor=silver" alt="PyPI version"/></a>
+<a href="https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb"><img src="https://img.shields.io/badge/Colab-Toy%20example-F9AB00?logo=googlecolab&logoColor=white" alt="Open toy notebook in Colab"/></a>
 
 Code for **DeepKriging on the Global Data** ([arXiv:2604.01689](https://arxiv.org/abs/2604.01689)): spherical spatial prediction with DeepKriging, MRTS-sphere / Wendland bases, and universal kriging. Implementation lives under `spherical_deepkriging/`.
 
@@ -35,7 +37,7 @@ make install-dev
 ## Examples
 
 - Smoke test: `examples/toy/toy_sphere_deepkriging.ipynb`
-- Same toy on **Google Colab** (pip install + run): [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb) — notebook: `examples/toy/toy_sphere_deepkriging_colab.ipynb`
+- Colab toy notebook: `examples/toy/toy_sphere_deepkriging_colab.ipynb` (also linked by the Colab badge above)
 - Simulations: `examples/simulation/`
 - Real data: `examples/real_data/`
 
