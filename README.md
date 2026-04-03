@@ -1,79 +1,40 @@
 # Spherical DeepKriging
+
 [![Tests](https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg)](https://github.com/STLABTW/spherical-deepkriging/actions)
 [![codecov](https://codecov.io/github/STLABTW/spherical-deepkriging/graph/badge.svg?token=OF0LKVDII6)](https://codecov.io/github/STLABTW/spherical-deepkriging)
 
-A deep learning framework for spatial prediction on the sphere, combining DeepKriging with spherical harmonic basis functions (MRTS-sphere), Wendland basis, and Universal Kriging.
+Code for **DeepKriging on the Global Data** ([arXiv:2604.01689](https://arxiv.org/abs/2604.01689)): spherical spatial prediction with DeepKriging, MRTS-sphere / Wendland bases, and universal kriging. Implementation lives under `spherical_deepkriging/`.
 
----
+## Setup
 
-### Available Basis Functions
+Needs [Miniconda](https://docs.conda.io/en/latest/miniconda.html). On Windows, use WSL.
 
-The package currently provides the following basis families:
-
-| Basis family | Module path | Role in this project |
-|---|---|---|
-| **MRTS-sphere** | `spherical_deepkriging.basis_functions.mrts_sphere` | **Primary basis (first choice)** for spherical-coordinate modeling in this project |
-| **MRTS (Euclidean)** | `spherical_deepkriging.basis_functions.mrts` | Secondary/auxiliary basis for Euclidean reference experiments |
-| **Wendland** | `spherical_deepkriging.basis_functions.wendland` | Secondary/auxiliary compact-support basis for baseline and comparison setups |
-
----
-
-### Feedforward Backbone
-
-The default feedforward hidden-block design is illustrated below:
-
-<img src="artifacts/hidden_block.png" alt="DeepKriging hidden block" width="60%" />
-
----
-
-### Prerequisites
-
-Before installation, make sure Miniconda is available.
-
-- **Miniconda**: Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
-- **Windows users**: Use WSL for development and builds.
-
----
-
-### Installation
-
-In most cases, make install-dev sets up everything you need for local development.
 ```bash
-    git clone https://github.com/STLABTW/spherical-deepkriging.git
-    cd spherical-deepkriging
-    make install-dev
+git clone https://github.com/STLABTW/spherical-deepkriging.git
+cd spherical-deepkriging
+make install-dev
 ```
 
+`make install-dev` creates the conda env and installs dependencies; `make build-spherical-cpp` builds the MRTS-sphere C++ extension.
 
-Notes:
-- `make install-dev` creates the spherical-deepkriging conda environment and installs project dependencies.
-- `make build-spherical-cpp` builds the MRTS-sphere C++ extension.
+## Examples
 
----
+- Smoke test: `examples/toy/toy_sphere_deepkriging.ipynb`
+- Simulations: `examples/simulation/`
+- Real data: `examples/real_data/`
 
-### Examples
+See `examples/README.md` for run notes.
 
-Examples are organized under `examples/`:
+## Citation
 
-- Quick module smoke test: `examples/toy/toy_sphere_deepkriging.ipynb`
-- Paper simulations: `examples/simulation/`
-- Real-data notebooks: `examples/real_data/`
-
-For run instructions and detailed notes, see:
-
-- `examples/README.md`
-
----
-
-### Citation
-```
+```bibtex
 @misc{huang2026deepkrigingglobaldata,
-      title={DeepKriging on the Global Data}, 
+      title={DeepKriging on the Global Data},
       author={Hao-Yun Huang and Wen-Ting Wang and Ping-Hsun Chiang and Wei-Ying Wu},
       year={2026},
       eprint={2604.01689},
       archivePrefix={arXiv},
       primaryClass={stat.ME},
-      url={https://arxiv.org/abs/2604.01689}, 
+      url={https://arxiv.org/abs/2604.01689},
 }
 ```
