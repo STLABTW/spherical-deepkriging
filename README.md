@@ -7,6 +7,10 @@
 
 Code for **DeepKriging on the Global Data** ([arXiv:2604.01689](https://arxiv.org/abs/2604.01689)): spherical spatial prediction with DeepKriging, MRTS-sphere / Wendland bases, and universal kriging. Implementation lives under `spherical_deepkriging/`.
 
+## Framework Overview: Spherical DeepKriging for Global Spatial Prediction
+
+<img src="artifacts/framework_overview.png" alt="Spherical DeepKriging framework" width="100%" />
+
 ## Install
 
 **From PyPI** ([project page](https://pypi.org/project/spherical-deepkriging/)) — typical use (Python ≥ 3.10):
@@ -42,6 +46,14 @@ make install-dev
 - Real data: `examples/real_data/`
 
 See `examples/README.md` for run notes.
+
+## Available Basis Functions
+
+| Basis family | Module path | Role in this project |
+|---|---|---|
+| **MRTS-sphere** | `spherical_deepkriging.basis_functions.mrts_sphere` | **Primary basis** for spherical-coordinate modeling |
+| **MRTS (Euclidean)** | `spherical_deepkriging.basis_functions.mrts` | Euclidean reference experiments |
+| **Wendland** | `spherical_deepkriging.basis_functions.wendland` | Compact-support baseline and comparison |
 
 ## Citation
 
